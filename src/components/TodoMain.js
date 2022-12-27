@@ -7,6 +7,7 @@ const TodoMain = () => {
     {id: 2, title: "리액트 심화 공부", desc: "리액트 심화 공부", isDone: false},
     {id: 3, title: "자바스크립트 공부", desc: "자바스크립트 혼공스 완독하기", isDone: false},
     {id: 4, title: "css Flex", desc: "css Flex 공부하기", isDone: false},
+    {id: 5, title: "리액트 기초 과제", desc: "과제 제출하기", isDone: true},
   ])
   
   const [title, setTitle] = useState('')
