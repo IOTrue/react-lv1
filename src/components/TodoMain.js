@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TodoList from './TodoList';
+import TodoCard from './TodoCard';
 
 const TodoMain = () => {
   const [lists, setLists] = useState([
@@ -64,7 +64,7 @@ const TodoMain = () => {
             {lists.map((list) => {
               return ( //isDone false 기본 값
                 !list.isDone
-                  && <TodoList list={list} key={list.id} deleteListHandler={deleteListHandler} doneListHandler={doneListHandler} />
+                  && <TodoCard list={list} key={list.id} deleteListHandler={deleteListHandler} doneListHandler={doneListHandler} />
               )
             })}
           </ul>
@@ -75,7 +75,7 @@ const TodoMain = () => {
           {lists.map((list) => {
               return ( //isDone true 완료
                 list.isDone
-                && <TodoList list={list} key={list.id} deleteListHandler={deleteListHandler} doneListHandler={doneListHandler} />
+                && <TodoCard list={list} key={list.id} deleteListHandler={deleteListHandler} doneListHandler={doneListHandler} />
               )
             })}
           </ul>
