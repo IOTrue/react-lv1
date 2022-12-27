@@ -22,17 +22,17 @@ const TodoMain = () => {
     setLists([...lists, newList])
     setTitle('') //제목 인풋 초기화
     setDesc('') //내용 인풋 초기화
-    e.preventDefault()
+    e.preventDefault() //페이지 랜더링 방지
   }
   const doneListHandler = (id)=> {
     const doneList = lists.map((list) => 
     list.id === id 
-    ? {...list, isDone: !list.isDone} //isDone 반대값 (토글 기능)
+    ? {...list, isDone: !list.isDone} //완료 선택 항목 isDone 반대값 (토글 기능)
     : list)
     setLists(doneList)
   }
   const deleteListHandler = (id)=> {
-    const delteList = lists.filter((list) => list.id !== id)
+    const delteList = lists.filter((list) => list.id !== id) //삭제 버튼 클릭하지 않은 항목만 출력
     setLists(delteList)
   }
 
