@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import TodoList from './TodoList';
-import DoneList from './DoneList';
 
 const TodoMain = () => {
   const [lists, setLists] = useState([
-    {id: 1, title: "리액트 기초 공부", desc: "리액트 기초 공부 후 과제 완성하기", done: 0},
-    {id: 2, title: "리액트 심화 공부", desc: "리액트 심화 공부", done: 0},
-    {id: 3, title: "자바스크립트 공부", desc: "자바스크립트 혼공스 완독하기", done: 0},
-    {id: 4, title: "css Flex", desc: "css Flex 공부하기", done: 0},
+    {id: 1, title: "리액트 기초 공부", desc: "리액트 기초 공부 후 과제 완성하기", isDone: false},
+    {id: 2, title: "리액트 심화 공부", desc: "리액트 심화 공부", isDone: false},
+    {id: 3, title: "자바스크립트 공부", desc: "자바스크립트 혼공스 완독하기", isDone: false},
+    {id: 4, title: "css Flex", desc: "css Flex 공부하기", isDone: false},
   ])
   
   const [title, setTitle] = useState('')
@@ -18,15 +17,18 @@ const TodoMain = () => {
       id: lists.length+1,
       title: title,
       desc: desc,
-      done: 0,
+      isDone: false,
     }
     setLists([...lists, newList])
     setTitle('') //제목 인풋 초기화
     setDesc('') //내용 인풋 초기화
     e.preventDefault()
   }
-  const doneListHandler = (id, num)=> {
-    const doneList = lists.map((list) => list.id === id ? {...list, done: num} : list)
+  const doneListHandler = (id)=> {
+    const doneList = lists.map((list) => 
+    list.id === id 
+    ? {...list, isDone: !list.isDone} //isDone 반대값 (토글 기능)
+    : list)
     setLists(doneList)
   }
   const deleteListHandler = (id)=> {
@@ -59,9 +61,9 @@ const TodoMain = () => {
           <span className="list-label">Working 🔥</span>
           <ul className="list-ul">
             {lists.map((list) => {
-              return (
-                list.done === 0
-                  && <TodoList list={list} key={list.id} deleteListHandler={deleteListHandler} doneListHandler={doneListHandler}></TodoList>
+              return ( //isDone false 기본 값
+                !list.isDone
+                  && <TodoList list={list} key={list.id} deleteListHandler={deleteListHandler} doneListHandler={doneListHandler} />
               )
             })}
           </ul>
@@ -70,9 +72,9 @@ const TodoMain = () => {
           <span className="list-label">Done 🎉</span>
           <ul className="list-ul">
           {lists.map((list) => {
-              return (
-                list.done === 1
-                && <DoneList list={list} key={list.id} deleteListHandler={deleteListHandler} doneListHandler={doneListHandler}></DoneList>
+              return ( //isDone true 완료
+                list.isDone
+                && <TodoList list={list} key={list.id} deleteListHandler={deleteListHandler} doneListHandler={doneListHandler} />
               )
             })}
           </ul>
