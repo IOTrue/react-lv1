@@ -20,10 +20,10 @@ const TodoMain = () => {
       desc: desc,
       isDone: false,
     }
+    e.preventDefault() //페이지 랜더링 방지
     setLists([...lists, newList])
     setTitle('') //제목 인풋 초기화
     setDesc('') //내용 인풋 초기화
-    e.preventDefault() //페이지 랜더링 방지
   }
   const doneListHandler = (id)=> {
     const doneList = lists.map((list) => 

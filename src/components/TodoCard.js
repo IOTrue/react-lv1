@@ -2,7 +2,7 @@ import CustomButton from './CustomButton';
 
 const TodoList = (props)=>{
     const { list, deleteListHandler, doneListHandler } = props
-    const { title, desc, id, isDone } = list
+    const { id, title, desc, isDone } = list
     return(
         <li className={list.isDone ? "list-item done" : "list-item"}>
             <span className="item-name">{title}</span>
